@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Release.Name }}-hello-kube-test"
+  labels:
+      appType: tradeshift-component
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+  - name: {{ .Release.Name }}-hello-kube-test
+    image: byrnedo/alpine-curl
+    command: ["sh", "-c", "curl -vv http://simple-hello:8080"]
+  restartPolicy: Never

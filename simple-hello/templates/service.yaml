@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  # DNS name to give the service
+  name: simple-hello
+spec:
+  # This selector will include all pods that matches the criteria below.
+  # the will search for all pods with metadata containing 'app: hello'
+  selector:
+    app: simple-hello
+  ports:
+    - protocol: TCP
+      # Expose port 8080 to other service in the cluster, they can now
+      # access it via http://hello:8080
+      port: 8080

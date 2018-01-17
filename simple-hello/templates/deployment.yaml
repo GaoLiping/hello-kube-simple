@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: simple-hello
+spec:
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # Assign some metadata to the pod, so we can find it later
+      labels:
+        app: simple-hello
+    spec:
+      # define the containers we wanna run in the pod, please note we can have multiple
+      containers:
+      - name: simple-hello
+        image: sorenmat/hello:latest
+        ports:
+          # expose port 8080 from this app
+        - containerPort: 8080
